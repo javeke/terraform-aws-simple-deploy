@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  iac-base:
+    container_name: iac-instance
+    build:
+      context: .
+    image: javeke/iac-base:node-14
+    working_dir: /app
+    env_file:
+      - ./test.env
+      # - ./personal.env
+      # - ./prod.env
+      # - ./stage.env
+    volumes:
+      - "./meta/.ssh:/root/.ssh"
+      - "./meta/.aws:/root/.aws"
+      - "../:/app"
+    tty: true
